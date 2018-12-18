@@ -15,12 +15,63 @@ let recargoCheque = 1.20;
 
 let resultadoCredito = 0;
 
+let miCuotaElegida = null;
+
+let click = 0;
 
 
 
+//boton deuda
 
+function verDeuda() {
+  $(".btn-one").on("click", function() {
+    $(".waitingText").addClass("visible");
+    setTimeout(function(){
+      $(".verDeuda").addClass("visible"); 
+      $(".waitingText").removeClass("visible");
+      setTimeout(function(){
+        $(".verDeuda").removeClass("visible"); 
+      }, 2000)
+    }, 1000)
+  });
+}
 
-//probando function on click con botones
+//boton Sol. ayuda
+function solicitarAyuda() {
+  $(".btn-three").on("click", function() {
+    $(".waitingText").addClass("visible");
+    setTimeout(function(){
+      $(".solicitarAyuda").addClass("visible"); 
+      $(".waitingText").removeClass("visible");
+      setTimeout(function(){
+        $(".solicitarAyuda").removeClass("visible"); 
+      }, 1500)
+    }, 1000)
+  });
+}
+
+//boton dar de baja
+
+function darDeBaja() {
+  $(".btn-four").on("click", function() {
+    $(".gif").addClass("visible")
+    setTimeout(function(){
+      $(".gif").removeClass("visible")
+    }, 3500);
+  })
+}
+
+//boton salir
+function salir() {
+  $(".btn-five").on("click", function() {
+    $(".salir").addClass("visible")
+    setTimeout(function(){
+      $(".salir").removeClass("visible")
+    }, 3500);
+  })
+}
+
+//boton comprar los productos
 function comrparProductos() {
   $(".btn-two").on("click", function() {
     $(".waitingText").addClass("visible");
@@ -140,9 +191,43 @@ function guardarEnLS() {
 function volverALaPaginaPrincipal() {
   let botonPaginaPrincipal = $("<button class='recargarPagina'>Pagina Principal</button>");
   $(".paginaPrincipal").append(botonPaginaPrincipal);
-  $(".recargarPagina").on("click", function() {
+  botonPaginaPrincipal.on("click", function() {
     location.reload();
   });
+}
+
+function botonConfirmarCompraCredito() {
+  let botonConfirmar = $("<button class='confirmar'>Confirmar Compra</button>");
+  $(".confirmarCompra").append(botonConfirmar);
+  botonConfirmar.on("click", function() {
+    click = 1
+    console.log(click)
+    if (click === 1) {
+      botonConfirmar.addClass("invisible")
+    $(".cuotas").addClass("invisible")
+    productosFinales();
+    guardarEnLS();
+    paginaConfirmada(); 
+    volverALaPaginaPrincipal();
+    }
+    click = 0;
+  })
+}
+
+function paginaConfirmada() {
+ switch(miCuotaElegida) {
+   case "1C":
+   $(".description-text").html("Elegiste un pago. ¡Gracias y vuelvas prontos!")
+   break;
+   case "12C": 
+   $(".description-text").html("Elegiste 12 cuotas. ¡Gracias y vuelvas prontos!");
+   break;
+   case "24C": 
+   $(".description-text").html("Elegiste 24 cuotas. ¡Gracias y vuelvas prontos!");
+   break;
+   case "36C":
+   $(".description-text").html("Elegiste 36 cuotas. ¡Gracias y vuelvas prontos!")
+ }
 }
 
 function seleccionandoLaCuota() {
@@ -150,19 +235,26 @@ function seleccionandoLaCuota() {
      let lasCuotas =  $(this).val();
      switch(lasCuotas) {
        case "1C":
+       miCuotaElegida = "1C"
        $(".description-text").html("En una cuota no hay recargo de interés.")
        break;
        case "12C":
-       let recargoCuota12 = resultadoCredito * 1.2;
-       $(".precio-final").html("$" + recargoCuota12);
+       miCuotaElegida = "12C"
+       let recargoCuota12 = (resultadoCredito * 1.2)/12;
+       
+       $(".precio-final").html("$" + recargoCuota12.toFixed(2));
        $(".description-text").html("Con 12 cuotas tenés un recargo del 20%");
+       break;
        case "24C":
-       let recargoCuota24 = resultadoCredito * 1.45;
-       $(".precio-final").html("$" + recargoCuota24);
+       miCuotaElegida = "24C"
+       let recargoCuota24 = (resultadoCredito * 1.45)/24;
+       $(".precio-final").html("$" + recargoCuota24.toFixed(2));
        $(".description-text").html("Con 24 cuotas tenés un recargo del 45%");
+       break;
        case "36C":
-       let recargoCuota36 = resultadoCredito * 1.7;
-       $(".precio-final").html("$" + recargoCuota36);
+       miCuotaElegida = "36C"
+       let recargoCuota36 = (resultadoCredito * 1.7)/36;
+       $(".precio-final").html("$" + recargoCuota36.toFixed(2));
        $(".description-text").html("Con 36 cuotas tenés un recargo del 70%");
      }
     })
@@ -187,9 +279,6 @@ function creandoElSelect() {
 }
 
 
-
-
-
 function verQueMetodoDePago() {
   $(".modal-btn").on("click", function() {
     resultadoDebito =  resultado * recargoDebito;
@@ -205,6 +294,7 @@ function verQueMetodoDePago() {
       $(".modal-button-container").addClass("invisible");
       $(".pregunta-mp").html("Método de pago elegido: " + metodoDePago)
       productosFinales();
+      guardarEnLS();
       volverALaPaginaPrincipal();
       break;
       case "deb":
@@ -213,6 +303,7 @@ function verQueMetodoDePago() {
       $(".precio-final").html("$" + resultadoDebito)
       $(".pregunta-mp").html("Método de pago elegido: " + metodoDePago)
       productosFinales();
+      guardarEnLS();
       volverALaPaginaPrincipal();
       break;
       case "ch": 
@@ -231,6 +322,7 @@ function verQueMetodoDePago() {
       resultado = resultadoCredito
       creandoElSelect();
       seleccionandoLaCuota();
+      botonConfirmarCompraCredito();
     }
   });
 }
@@ -239,3 +331,9 @@ function verQueMetodoDePago() {
 comrparProductos();
 creandoLosBotones();
 verQueMetodoDePago();
+
+//botones
+solicitarAyuda();
+darDeBaja();
+salir();
+verDeuda();

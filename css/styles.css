@@ -176,6 +176,42 @@
   -webkit-box-shadow: 5px 5px 5px #888;
   box-shadow: 5px 5px 5px #888;
 }
+.total-container .verDeuda {
+  display: none;
+  text-align: center;
+  font-family: "Yrsa", serif;
+  color: rgba(156, 6, 144, 0.959);
+  font-size: 1rem;
+}
+.total-container .verDeuda.visible {
+  display: flex;
+}
+.total-container .solicitarAyuda {
+  display: none;
+  text-align: center;
+  font-family: "Yrsa", serif;
+  color: rgba(156, 6, 144, 0.959);
+  font-size: 1rem;
+}
+.total-container .solicitarAyuda.visible {
+  display: flex;
+}
+.total-container .salir {
+  display: none;
+  text-align: center;
+  font-family: "Yrsa", serif;
+  color: rgba(156, 6, 144, 0.959);
+  font-size: 1rem;
+}
+.total-container .salir.visible {
+  display: flex;
+}
+.total-container .gif {
+  display: none;
+}
+.total-container .gif.visible {
+  display: block;
+}
 .total-container .financiacion {
   display: none;
   justify-content: center;
@@ -271,6 +307,30 @@
 }
 .modal-continuar .modal-container .seleccionarCuotas .cuotas {
   width: 50%;
+}
+.modal-continuar .modal-container .seleccionarCuotas .cuotas.invisible {
+  display: none;
+}
+.modal-continuar .modal-container .confirmarCompra {
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+  margin: 5px;
+  width: 100%;
+}
+.modal-continuar .modal-container .confirmarCompra .confirmar {
+  font-family: "Yrsa", serif;
+  width: 70%;
+  border: none;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.modal-continuar .modal-container .confirmarCompra .confirmar.invisible {
+  display: none;
+}
+.modal-continuar .modal-container .confirmarCompra .confirmar:hover {
+  color: rgba(156, 6, 144, 0.959);
 }
 .modal-continuar .modal-container .paginaPrincipal {
   display: flex;

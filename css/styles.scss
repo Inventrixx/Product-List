@@ -184,6 +184,42 @@ $text-color: rgba(156, 6, 144, 0.959);
 -webkit-box-shadow: 5px 5px 5px #888;
 box-shadow: 5px 5px 5px #888;
   }
+  .verDeuda {
+    display: none;
+    text-align: center;
+    font-family: $font-principal;
+    color: $text-color;
+    font-size: 1rem;
+    &.visible {
+      display: flex;
+    }
+  }
+  .solicitarAyuda {
+    display: none;
+    text-align: center;
+    font-family: $font-principal;
+    color: $text-color;
+    font-size: 1rem;
+    &.visible {
+      display: flex;
+    }
+  }
+  .salir {
+    display: none;
+    text-align: center;
+    font-family: $font-principal;
+    color: $text-color;
+    font-size: 1rem;
+    &.visible {
+      display: flex;
+    }
+  }
+  .gif {
+    display: none;
+    &.visible {
+      display: block;
+    }
+  }
   .financiacion {
     display: none;
     justify-content: center;
@@ -269,8 +305,34 @@ box-shadow: 5px 5px 5px #888;
         display: flex;
         justify-content: center;
         width: 100%;
+        
         .cuotas {
           width: 50%;
+          &.invisible {
+            display: none;
+          }
+        }
+      }
+      .confirmarCompra {
+        display: flex;
+        justify-content: center;
+        flex-flow: wrap;
+        margin: 5px;
+        width: 100%;
+        
+        .confirmar {
+          font-family: $font-principal;
+          width: 70%;
+          border: none;
+          font-size: 0.9em;
+          cursor: pointer;
+          border-radius: 30px;
+          &.invisible {
+            display: none;
+          }
+          &:hover {
+            color:$text-color;
+          }
         }
       }
         .paginaPrincipal{
