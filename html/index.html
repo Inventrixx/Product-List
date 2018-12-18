@@ -10,7 +10,14 @@
 <body>
   <div class="total-container">
   <div class="container">
-
+    <div class="container-userName">
+        <div class="userName-text">
+            <p>¡Bienvenidx!</p>
+        </div>
+        <div class="userName-input">
+            <input type="text" class="nombreDeUsuario">
+        </div>
+    </div>
     <!--5 botones-->
     <div class="cont-btn">
         <button class="btn-one">Deuda</button>
@@ -44,7 +51,7 @@
         <div class="total-prod">
             <span class="subtotal"></span>
             <div class="button-container">
-                <button class="continuar">Continuar -></button>
+                <button class="continuar" onclick="botonContinuar()">Continuar -></button>
             </div>
         </div>
   </div>
@@ -62,12 +69,24 @@
         <!--Modal donde va a ir mis botones-->
     <div class="modal-continuar">
       <div class="modal-container">
-          <div class="subtotal-text">
-              <span class="precio-final"></span>
-              <p>Precio final. Cómo abonás?</p>
+            <div class="subtotal-text">
+                    <span class="precio-final"></span>
+                    <div class="productosFinales">
+                  </div>
+                    <p class="pregunta-mp">Precio final. Cómo abonás?</p>
+                    <p class="description-text"></p>
+                </div>
+            <div class="modal-button-container">
+                </div>
+                <div class="seleccionarCuotas">
+                    
+                </div>
+                <div class="paginaPrincipal">
+      
+                </div>
           </div>
-          <div class="modal-button-container">
-          </div>
+       
+    
       </div>
  </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
